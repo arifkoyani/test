@@ -2,6 +2,10 @@
 
 import React, { useState, useRef } from 'react';
 
+
+
+let API_KEY=process.env.NEXT_PUBLIC_API_KEY
+console.log(API_KEY)
 interface UploadResponse {
   url: string;
   error: boolean;
@@ -25,7 +29,7 @@ const CameraScanner: React.FC = () => {
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your actual API key
+
 
   const handleScanClick = () => {
     setError('');
@@ -36,6 +40,7 @@ const CameraScanner: React.FC = () => {
       fileInputRef.current.click();
     }
   };
+  
 
   const handleFileCapture = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -72,7 +77,7 @@ const CameraScanner: React.FC = () => {
     const response = await fetch('https://api.pdf.co/v1/file/upload', {
       method: 'POST',
       headers: {
-        'x-api-key': API_KEY,
+        'x-api-key':process.env.NEXT_PUBLIC_API_KEY as string,
       },
       body: formData,
     });
@@ -89,6 +94,7 @@ const CameraScanner: React.FC = () => {
 
     return data.url;
   };
+  
 
   const convertToPdf = async (imageUrl: string): Promise<string> => {
     setIsConverting(true);
@@ -96,7 +102,7 @@ const CameraScanner: React.FC = () => {
     const response = await fetch('https://api.pdf.co/v1/pdf/convert/from/image', {
       method: 'POST',
       headers: {
-        'x-api-key': API_KEY,
+        'x-api-key': process.env.NEXT_PUBLIC_API_KEY as string,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -139,7 +145,7 @@ const CameraScanner: React.FC = () => {
         <button
           onClick={handleScanClick}
           disabled={isUploading || isConverting}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-semibold py-4 px-6 rounded-lg mb-4 transition duration-200"
+          className="w-full bg-[#e5322d] hover:bg-[#e5322d] disabled:bg-blue-300 text-white font-semibold py-4 px-6 rounded-lg mb-4 transition duration-200"
         >
           {isUploading ? 'Uploading...' : isConverting ? 'Converting...' : 'Scan'}
         </button>
