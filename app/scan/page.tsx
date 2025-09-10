@@ -2,10 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 
-
-
-let API_KEY=process.env.NEXT_PUBLIC_API_KEY
-console.log(API_KEY)
 interface UploadResponse {
   url: string;
   error: boolean;
