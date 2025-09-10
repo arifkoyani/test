@@ -141,7 +141,7 @@ const CameraScanner: React.FC = () => {
         <button
           onClick={handleScanClick}
           disabled={isUploading || isConverting}
-          className="w-full bg-[#e5322d] hover:bg-[#e5322d] disabled:bg-blue-300 text-white font-semibold py-4 px-6 rounded-lg mb-4 transition duration-200"
+          className="w-full bg-[#fff229] hover:bg-[#e5322d] disabled:bg-blue-300 text-white font-semibold py-4 px-6 rounded-lg mb-4 transition duration-200"
         >
           {isUploading ? 'Uploading...' : isConverting ? 'Converting...' : 'Scan'}
         </button>
